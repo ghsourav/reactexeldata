@@ -37,17 +37,7 @@ const exelvalidatin=['application/vnd.openxmlformats-officedocument.spreadsheetm
     const dataSheet = sheet.Sheets[sheetname];
     const xdata = XLSX.utils.sheet_to_json(dataSheet);
     console.log(xdata)
-    // let aaa=[{
-    //   first_name: "a",
-    //   last_name: "",
-    //   email: "",
-    //   phone: ""
-    // }, {
-    //   first_name: "b",
-    //   last_name: "",
-    //   email: "",
-    //   phone: ""
-    // }]
+    
 
     // console.log(aaa)
   }
