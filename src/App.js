@@ -1,61 +1,78 @@
-import {useState} from 'react'
-import * as XLSX from 'xlsx'
+import React, { useState } from 'react'
+import ShareTrackerDashboard from './ShareTrackerDashboard';
+import StockSearch from './StockSearch';
 
-function App() {
+const MENUS = [
+    { key: 'tracker', label: 'Tracker Dashboard' },
+    { key: 'search',  label: 'Stock Search' },
+];
 
-const [sheetFile, setsheetFile] = useState(null);
+const App = () => {
+    const [active, setActive] = useState('tracker');
 
-const exelvalidatin=['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+    return (
+        <>
+            <nav style={styles.nav}>
+                <span style={styles.brand}>📈 Share Tracker</span>
+                <div style={styles.links}>
+                    {MENUS.map(m => (
+                        <button
+                            key={m.key}
+                            onClick={() => setActive(m.key)}
+                            style={{ ...styles.link, ...(active === m.key ? styles.linkActive : {}) }}
+                        >
+                            {m.label}
+                        </button>
+                    ))}
+                </div>
+            </nav>
 
- const file =(e) =>{
-  let files = e.target.files[0];
-  if(files){
-    let getfiletype =files.type;
-    console.log(getfiletype)
-    if(files&& exelvalidatin.includes(getfiletype)){
-      let reader = new FileReader();
-      reader.readAsArrayBuffer(files);
-      reader.onload=(e)=>{
-        setsheetFile(e.target.result)
-        // console.log(e.target.result)
-      }
-    }
-    else{
-      setsheetFile(null)
-      console.log("Only Excel Allowed")
-    }
-  }
- }
-
- const getdata = (e) =>{
-  e.preventDefault();
-  if(sheetFile!==null){
-    const sheet = XLSX.read(sheetFile,{type:'buffer'});
-    const sheetname=sheet.SheetNames[0];
-   // console.log(sheet)
-   // console.log(sheetname)
-    const dataSheet = sheet.Sheets[sheetname];
-    const xdata = XLSX.utils.sheet_to_json(dataSheet);
-    console.log(xdata)
-    
-
-    // console.log(aaa)
-  }
-  else{
-    console.log("No exel fil found")
-  }
+            <div style={styles.content}>
+                {active === 'tracker' && <ShareTrackerDashboard />}
+                {active === 'search'  && <StockSearch />}
+            </div>
+        </>
+    )
 }
 
-  return (
-    <div className="App">
-        <section id="upload">
-          <form onSubmit={getdata}>
-          <input type="file" onChange={file}></input>
-          <button>Get Data</button>
-          </form>
-        </section>
-    </div>
-  );
+const styles = {
+    nav: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 16,
+        background: '#1a1a2e',
+        padding: '10px 24px',
+    },
+    brand: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+        fontFamily: 'Consolas, monospace',
+        marginRight: 'auto',
+    },
+    links: {
+        display: 'flex',
+        gap: 8,
+    },
+    link: {
+        padding: '6px 18px',
+        background: 'transparent',
+        color: '#adb5bd',
+        border: '1px solid #444',
+        borderRadius: 4,
+        cursor: 'pointer',
+        fontSize: 13,
+        fontFamily: 'Consolas, monospace',
+        transition: 'all 0.15s',
+    },
+    linkActive: {
+        background: '#0d6efd',
+        color: '#fff',
+        border: '1px solid #0d6efd',
+    },
+    content: {
+        padding: '16px',
+    },
 }
 
-export default App;
+export default App
