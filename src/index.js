@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styles/index.css';
+import App from './pages/App';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import GoogleAuthWrapper from './GoogleAuthWrapper';
+import GoogleAuthWrapper from './components/Auth';
 import reportWebVitals from './reportWebVitals';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;

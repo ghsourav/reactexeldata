@@ -1,0 +1,67 @@
+/* ─── Nav ────────────────────────────────────────────────────────────────── */
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 24px;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+.app-brand-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.app-brand-info { display: flex; flex-direction: column; line-height: 1.2; }
+.app-brand-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.2px;
+}
+.app-brand-version {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.app-nav-links { display: flex; gap: 4px; }
+
+.app-nav-btn {
+  padding: 6px 16px;
+  background: transparent;
+  color: #64748b;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+.app-nav-btn:hover { background: #f1f5f9; color: #1e293b; }
+.app-nav-btn--active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.app-content { padding: 20px; }

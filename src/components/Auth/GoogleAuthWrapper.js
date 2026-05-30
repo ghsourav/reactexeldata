@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-
-const ALLOWED_USERS = ['tapas1175@gmail.com', 'gh.sourav3399@gmail.com'];
+import { ALLOWED_USERS } from '../../config/authConfig';
 
 export default function GoogleAuthWrapper({ children }) {
     const [user, setUser] = useState(null);
